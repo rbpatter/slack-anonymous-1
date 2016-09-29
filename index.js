@@ -48,30 +48,17 @@ function createResponsePayload(requestBody) {
     var text = requestBody.text;
     var command = requestBody.command;
 
-    if (!text || text === 'help') {
-        return createError(getFullHelp(command));
-    }
-
-    var splitted = text.split(" ");
-    if (splitted.length <= 1) {
+    if (!text) {
         return createError(getUsageHelp(command));
     }
 
-    var target = splitted[0];
-    var remainingText = splitted.slice(1).join(' ');
-    remainingText = 'Someone said "' + remainingText + '"';
-
-    if (target === ':here') {
-        return {
-            channel: requestBody.channel_id,
-            text: remainingText
-        };
-    }
+    var remainingText = text;
 
     return {
-        channel: target,
+        channel: requestBody.channel_id,
         text: remainingText
     };
+
 }
 
 app.post('/', function(req, response) {
@@ -88,7 +75,7 @@ app.post('/', function(req, response) {
         if(error) {
             response.end('Unable to post your anonymous message: ' + JSON.stringify(error));
         } else {
-            response.end('Delivered! :cop:');
+            response.end('Delivered!');
         }
 
     });
