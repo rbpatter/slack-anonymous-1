@@ -16,7 +16,7 @@ function createError(errorMessage) {
 
 function getUsageHelp(commandName) {
     var text = 'Expected usage: \n' +
-        commandName + ' My anonymous message.' +
+        commandName + ' My anonymous message.';
 
     return text;
 }
@@ -57,7 +57,7 @@ app.post('/', function(req, response) {
             response.end('Unable to post your anonymous message: ' + JSON.stringify(error));
         }
 	else {
-            response.end('Delivered!');
+            response.end();
         }
     });
 });
