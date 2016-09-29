@@ -88,7 +88,7 @@ app.post('/', function(req, response) {
         if(error) {
             response.end('Unable to post your anonymous message: ' + JSON.stringify(error));
         } else {
-            response.end('Delivered! :cop:');
+            response.end('Delivered!');
         }
 
     });
